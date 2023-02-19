@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Сайт з адаптивним дизайном та анімацією картинок</title>
+    <style>
+#img3 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    right: 100px;
+    bottom: 100px;
+}
+#img2 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    bottom: 100px;
+}
+#img1 {
+    position: absolute;
+    width: 95%;
+    height: 95%;
+}
+#knife {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    right: 100px;
+    bottom: 200px;
+}
+.door{
+    position: absolute; /* устанавливаем позиционирование абсолютное, чтобы элемент не занимал места в потоке документа */
+    top: 50%; /* устанавливаем отступ сверху в 50% от высоты родительского элемента */
+    left: 50%; /* устанавливаем отступ слева в 50% от ширины родительского элемента */
+    transform: translate(-50%, -50%); 
+    width: 370px;
+    height: 350px;
+}
+    </style>
+</head>
+<body>
+    <img src="/img/door.png" alt="" id="img1">
+    <img src="/img/cook.png" alt="Картинка 2" id="img2" />
+    <img src="/img/ch-close.png" alt="Картинка 3" id="img3" />
+    <div id="image-container"></div>
+    <div class="door"></div>
+    <script>
+    var img2 = document.getElementById("img2");
+    var img3 = document.getElementById("img3");
+    let knife = document.querySelector('#knife');
+    let step;
+    let door = document.querySelector('.door')
+    let vidio = 1;
+
+    img3.addEventListener('click', () => {
+        if(knife) {
+    
+        } else {
+    img3.src = '/img/ch-nothing.png'
+    let knife = new Image();
+    knife.src = '/img/knife.png';
+    knife.id = 'knife';
+    document.getElementById('image-container').appendChild(knife);
+    step = 3;
+    }})
+
+
+
+    img2.addEventListener('click', () => {
+    document.addEventListener("mousemove", function (event) {
+    var x = event.clientX;
+    var y = event.clientY;
+    img2.style.left = x - 50 + "px";
+    img2.style.top = y - 50 + "px";
+    if (step === 3) {
+        
+        img2.src = '/img/bandit.png';
+
+
+        if (x + 100 > 280 &&
+            x < 280 + 375 &&
+            y + 100 > 80 &&
+            y + 100 < 430 && vidio === 1
+            ){
+                vidio = 0;
+                const videoElement = document.createElement('video');
+                videoElement.setAttribute('src', '/video/Triggered.mp4');
+                videoElement.setAttribute('autoplay', '');
+                videoElement.setAttribute('muted', '');
+                videoElement.setAttribute('loop', '');
+
+                // Устанавливаем стили для элемента video
+                videoElement.style.position = 'absolute';
+                videoElement.style.top = '0';
+                videoElement.style.left = '0';
+                videoElement.style.width = '100%';
+                videoElement.style.height = '100%';
+                videoElement.style.objectFit = 'cover';
+                videoElement.style.zIndex = '9999';
+
+                // Добавляем элемент video на страницу
+                document.body.appendChild(videoElement);
+                setTimeout(function() {
+                location.href = 'https://www.google.com';
+                }, 3800);
+            }
+        }
+    });})
+
+
+    </script>
+  </body>
+</html>
