@@ -41,9 +41,9 @@
     </style>
 
 <body>
-    <img src="/door.png" alt="" id="img1">
-    <img src="/cook.png" alt="Картинка 2" id="img2" />
-    <img src="/ch-close.png" alt="Картинка 3" id="img3" />
+    <img src="door.png" alt="" id="img1">
+    <img src="cook.png" alt="Картинка 2" id="img2" />
+    <img src="ch-close.png" alt="Картинка 3" id="img3" />
     <div id="image-container"></div>
     <div class="door"></div>
     <script>
@@ -58,9 +58,9 @@
         if(knife) {
     
         } else {
-    img3.src = '/ch-nothing.png'
+    img3.src = 'ch-nothing.png'
     let knife = new Image();
-    knife.src = '/knife.png';
+    knife.src = 'knife.png';
     knife.id = 'knife';
     document.getElementById('image-container').appendChild(knife);
     step = 3;
@@ -75,7 +75,7 @@
     img2.style.left = x - 50 + "px";
     img2.style.top = y - 50 + "px";
     if (step === 3) {
-        img2.src = '/bandit.png';
+        img2.src = 'bandit.png';
         //document.querySelector('#image-container').remove();
 
         if (x + 100 > 280 &&
@@ -85,7 +85,7 @@
             ){
                 vidio = 0;
                 const videoElement = document.createElement('video');
-                videoElement.setAttribute('src', '/Triggered.mp4');
+                videoElement.setAttribute('src', 'Triggered.mp4');
                 videoElement.setAttribute('autoplay', '');
                 videoElement.setAttribute('muted', '');
                 videoElement.setAttribute('loop', '');
