@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>Сайт з адаптивним дизайном та анімацією картинок</title>
+    <title>play</title>
     </head>
     <style>
 #img3 {
@@ -38,6 +38,15 @@
     width: 370px;
     height: 350px;
 }
+#window{
+    position: absolute;
+    width: 200px;
+    height: 220px;
+    left: 20px;
+    top: 50px;
+    background-image: linear-gradient(to bottom, rgba(136, 4, 4, 0.9), rgba(208, 253, 7, 0.4)); /* градиент и изображение шторы в качестве фона */
+    background-repeat: repeat; 
+}
     </style>
 
 <body>
@@ -46,18 +55,42 @@
     <img src="ch-close.png" alt="Картинка 3" id="img3" />
     <div id="image-container"></div>
     <div class="door"></div>
+    <div id="window"></div>
+    
+
     <script>
     var img2 = document.getElementById("img2");
     var img3 = document.getElementById("img3");
     let knife = document.querySelector('#knife');
     let step;
+    let windows = document.querySelector('#window')
     let door = document.querySelector('.door')
     let vidio = 1;
+    let povar = new Audio();
+    let openDoor = new Audio();
+    let sunduk = new Audio();
+    let windowOpen = new Audio();
+    povar.src = 'nojom.mp3';
+    sunduk.src = 'otkryit.mp3';
+    openDoor.src = 'dveri.mp3';
+    windowOpen.src = 'shtory.mp3'
+
+    window.addEventListener('click', () => {
+        windowOpen.play();
+        windows.style.width = '0';
+    })
+
+    door.addEventListener('click', () => {
+        openDoor.play();
+        location.href = 'https://19thanks96.github.io/banditMemUkr/';
+    })
 
     img3.addEventListener('click', () => {
+        povar.play();
         if(knife) {
     
         } else {
+    
     img3.src = 'ch-nothing.png'
     let knife = new Image();
     knife.src = 'knife.png';
@@ -76,6 +109,7 @@
     img2.style.top = y - 50 + "px";
     if (step === 3) {
         img2.src = 'bandit.png';
+        sunduk.play();
         //document.querySelector('#image-container').remove();
 
         if (x + 100 > 280 &&
