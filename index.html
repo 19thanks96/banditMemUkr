@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>play</title>
+
     </head>
     <style>
 #img3 {
@@ -40,9 +41,9 @@
 }
 #window{
     position: absolute;
-    width: 200px;
+    width: 300px;
     height: 220px;
-    left: 20px;
+    left: 50px;
     top: 50px;
     background-image: linear-gradient(to bottom, rgba(136, 4, 4, 0.9), rgba(208, 253, 7, 0.4)); /* градиент и изображение шторы в качестве фона */
     background-repeat: repeat; 
@@ -82,7 +83,9 @@
 
     door.addEventListener('click', () => {
         openDoor.play();
+        setTimeout(function() {
         location.href = 'https://19thanks96.github.io/banditMemUkr/';
+        }, 1800);
     })
 
     img3.addEventListener('click', () => {
