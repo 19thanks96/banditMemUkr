@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        background: #000;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+    }
+    img{
+        opacity: 0;
+    }
+    .where{
+        position: absolute;
+        left: 320px;
+        bottom: 20px;
+        width: 150px;
+        height: 150px;
+    }
+    .ask {
+        position: absolute;
+        color: #fff;
+        top: 10%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+    }
+    #click{
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 10%;
+        left: 10%; 
+        transform: translate(-50%, -50%); 
+        border: 1px solid #fff;
+        background-color: #000;
+        z-index: 2;
+    }
+</style>
+<body>
+    <div class="ask">Відшукай в темряві пристрій</div>
+    <div class="where">
+    <img id="telephone" src="айфон.png" height="75" width="65"  alt="">
+    </div>
+    <div id="click"></div>
+</body>
+<script>
+    let click = document.querySelector('#click');
+    let x;
+    let y;
+    let no = new Audio();
+    no.src = 'no.mp3';
+
+    click.addEventListener('click', () => {
+        no.play();
+        x = Math.floor(Math.random() * 100);
+        y = Math.floor(Math.random() * 90);
+        click.style.top = x + '%';
+        click.style.left = y + '%';
+    })
+    const videoElement = document.createElement('video');
+        videoElement.setAttribute('src', 'lyashko.mp4');
+        videoElement.setAttribute('autoplay', '');
+        videoElement.setAttribute('muted', '');
+        videoElement.setAttribute('loop', '');
+
+        // Устанавливаем стили для элемента video
+        videoElement.style.position = 'absolute';
+        videoElement.style.top = '0';
+        videoElement.style.left = '0';
+        videoElement.style.width = '100%';
+        videoElement.style.height = '100%';
+        videoElement.style.objectFit = 'cover';
+        videoElement.style.zIndex = '-999';
+let  opacity = 0;
+    function fadeIn() {
+    let cellphone = document.querySelector('#telephone');
+    
+    let intervalID = cellphone. addEventListener('mouseenter', function() {
+    console.log(opacity)
+    opacity += 0.05;
+    cellphone.style.opacity = opacity;
+    checkOpacity();
+}, 300);
+}
+fadeIn();
+
+function checkOpacity() {
+    if (opacity >= 1) {
+        videoElement.style.zIndex = '999';
+        document.body.appendChild(videoElement);
+        videoElement.play();
+        setTimeout(function() {
+            window.location.href = 'levelthree.html'
+        }, 5600);
+    }
+}
+</script>
+</html>
+``

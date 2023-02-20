@@ -1,128 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>play</title>
-
-    </head>
-    <style>
-#img3 {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    right: 100px;
-    bottom: 100px;
-}
-#img2 {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    bottom: 100px;
-}
-#img1 {
-    position: absolute;
-    width: 95%;
-    height: 95%;
-}
-#knife {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    right: 100px;
-    bottom: 200px;
-}
-.door{
-    position: absolute; /* устанавливаем позиционирование абсолютное, чтобы элемент не занимал места в потоке документа */
-    top: 50%; /* устанавливаем отступ сверху в 50% от высоты родительского элемента */
-    left: 50%; /* устанавливаем отступ слева в 50% от ширины родительского элемента */
-    transform: translate(-50%, -50%); 
-    width: 370px;
-    height: 350px;
-}
-#window{
-    position: absolute;
-    width: 300px;
-    height: 220px;
-    left: 50px;
-    top: 50px;
-    background-image: linear-gradient(to bottom, rgba(136, 4, 4, 0.9), rgba(208, 253, 7, 0.4)); /* градиент и изображение шторы в качестве фона */
-    background-repeat: repeat; 
-}
-    </style>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        width: 95%;
+        height: 95%;
+        z-index: 2;
+    }
+    .bottom{
+        position: absolute;
+        bottom: 0;
+        height: 20%;
+        width: 100vw;
+        z-index: 4;
+    }
+    #square {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 20%;
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        border: 1px solid #000;
+        background-color: #fff;
+        z-index: 2;
+    }
+    #squaretwo {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 20%;
+        left: 20%; 
+        transform: translate(-50%, -50%); 
+        border: 1px solid #000;
+        background-color: #fff;
+        z-index: 2;
+    }
+    #squarethree {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 20%;
+        left: 80%; 
+        transform: translate(-50%, -50%); 
+        border: 1px solid #000;
+        background-color: #fff;
+        z-index: 2;
+    }
+    img{
+        width: 100px;
+        height: 100px;
+        z-index: 5;
+        position: absolute;
+    }
+    .b-g {
+        position: absolute;
+        height: 95%;
+        width: 100%;
+        background-color: rgb(106, 197, 32);
+        z-index: 2;
+    }
+    #iOne{
+        bottom: 20px;
+        left: 20px;
+    }
+    #iTwo {
+        bottom: 10px;
+        left: 50%;
+        transform: translate(-50%, 0%); 
+    }
+    #iThree {
+        bottom: 20px;
+        right: 20px;
+    }
+</style>
 <body>
-    <img src="door.png" alt="" id="img1">
-    <img src="cook.png" alt="Картинка 2" id="img2" />
-    <img src="ch-close.png" alt="Картинка 3" id="img3" />
-    <div id="image-container"></div>
-    <div class="door"></div>
-    <div id="window"></div>
+    <img class="bottom" src="pidkoga.jpg" alt="">
+    <div class="b-g"></div>
+    <div id="square"></div>
+    <div id="squaretwo"></div>
+    <div id="squarethree"></div>
+    <img id="iOne" src="лялька.png" alt="">
+    <img id="iTwo" src="юла.png" alt="">
+    <img id="iThree" src="яйце.png" alt="">
     
-
-    <script>
-    var img2 = document.getElementById("img2");
-    var img3 = document.getElementById("img3");
-    let knife = document.querySelector('#knife');
-    let step;
-    let windows = document.querySelector('#window')
-    let door = document.querySelector('.door')
-    let vidio = 1;
-    let povar = new Audio();
-    let openDoor = new Audio();
-    let sunduk = new Audio();
-    let windowOpen = new Audio();
-    povar.src = 'nojom.mp3';
-    sunduk.src = 'otkryit.mp3';
-    openDoor.src = 'dveri.mp3';
-    windowOpen.src = 'shtory.mp3'
-
-    window.addEventListener('click', () => {
-        windowOpen.play();
-        windows.style.width = '0';
-    })
-
-    door.addEventListener('click', () => {
-        openDoor.play();
-        setTimeout(function() {
-        location.href = 'https://19thanks96.github.io/banditMemUkr/';
-        }, 1800);
-    })
-
-    img3.addEventListener('click', () => {
-        povar.play();
-        if(knife) {
-    
-        } else {
-    
-    img3.src = 'ch-nothing.png'
-    let knife = new Image();
-    knife.src = 'knife.png';
-    knife.id = 'knife';
-    document.getElementById('image-container').appendChild(knife);
-    step = 3;
-    }})
+</body>
+<script>
+    let iOne = document.querySelector('#iOne');
+    let iTwo = document.querySelector('#iTwo');
+    let iThree = document.querySelector('#iThree');
+    let squareOne = document.querySelector('#squaretwo');
+    let squaretwo = document.querySelector('#square');
+    let squarethree = document.querySelector('#squarethree');
+    let score = 0;
 
 
+iOne.addEventListener('click', function(event) {
+    squaretwo.appendChild(event.target);
+    iOne.style.width = 60 + 'px';
+    iOne.style.height = 60 + 'px';
+    score += 1 ;
+    checkScore(score);
+});
+iTwo.addEventListener('click', function(event) {
+        squareOne.appendChild(event.target);
+        iTwo.style.width = 60 + 'px';
+        iTwo.style.height = 60 + 'px';
+        score += 1 ;
+        checkScore(score);
+});
+iThree.addEventListener('click', function(event) {
+    squarethree.appendChild(event.target);
+        iThree.style.width = 60 + 'px';
+        iThree.style.height = 60 + 'px';
+        score += 1 ;
+        checkScore(score);
+});
 
-    img2.addEventListener('click', () => {
-    document.addEventListener("mousemove", function (event) {
-    var x = event.clientX;
-    var y = event.clientY;
-    img2.style.left = x - 50 + "px";
-    img2.style.top = y - 50 + "px";
-    if (step === 3) {
-        img2.src = 'bandit.png';
-        sunduk.play();
-        //document.querySelector('#image-container').remove();
-
-        if (x + 100 > 280 &&
-            x < 280 + 375 &&
-            y + 100 > 80 &&
-            y + 100 < 430 && vidio === 1
-            ){
-                vidio = 0;
-                const videoElement = document.createElement('video');
-                videoElement.setAttribute('src', 'Triggered.mp4');
+function checkScore(score) {
+    console.log(score)
+if (score === 3) {
+    const videoElement = document.createElement('video');
+                videoElement.setAttribute('src', 'videoplayback.mp4');
                 videoElement.setAttribute('autoplay', '');
                 videoElement.setAttribute('muted', '');
                 videoElement.setAttribute('loop', '');
@@ -140,12 +145,9 @@
                 document.body.appendChild(videoElement);
                 setTimeout(function() {
                     window.location.href = 'leveltwo.html'
-                }, 4200);
-            }
-        }
-    });})
+                }, 7000);
+}
+}
 
-
-    </script>
-  </body>
+</script>
 </html>
