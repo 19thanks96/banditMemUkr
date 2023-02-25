@@ -64,9 +64,8 @@
     var img3 = document.getElementById("img3");
     let knife = document.querySelector('#knife');
     let step;
-    let windows = document.querySelector('#window')
-    let door = document.querySelector('.door')
-    let vidio = 1;
+    let windows = document.querySelector('#window');
+    let door = document.querySelector('.door');
     let povar = new Audio();
     let openDoor = new Audio();
     let sunduk = new Audio();
@@ -90,19 +89,22 @@
 
     img3.addEventListener('click', () => {
         povar.play();
-        if(knife) {
-    
-        } else {
-    
     img3.src = 'ch-nothing.png'
     let knife = new Image();
     knife.src = 'knife.png';
     knife.id = 'knife';
     document.getElementById('image-container').appendChild(knife);
     step = 3;
-    }})
+    setTimeout(function () {
+        img3.src = 'ch-close.png';
+        povar.play();
+    }, 2000);
+    })
 
-
+    img2.addEventListener('mouseenter', function () {
+    if (step === 3) {
+        img2.src = 'bandit.png';
+        sunduk.play();}})
 
     img2.addEventListener('click', () => {
     document.addEventListener("mousemove", function (event) {
@@ -110,17 +112,14 @@
     var y = event.clientY;
     img2.style.left = x - 50 + "px";
     img2.style.top = y - 50 + "px";
-    if (step === 3) {
-        img2.src = 'bandit.png';
-        sunduk.play();
+    
         //document.querySelector('#image-container').remove();
 
         if (x + 100 > 280 &&
             x < 280 + 375 &&
             y + 100 > 80 &&
-            y + 100 < 430 && vidio === 1
+            y + 100 < 430 
             ){
-                vidio = 0;
                 const videoElement = document.createElement('video');
                 videoElement.setAttribute('src', 'Triggered.mp4');
                 videoElement.setAttribute('autoplay', '');
@@ -142,7 +141,7 @@
                     window.location.href = 'levelthree.html'
                 }, 4200);
             }
-        }
+        
     });})
 
 

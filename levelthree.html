@@ -41,6 +41,7 @@
         border: 1px solid #fff;
         background-color: #000;
         z-index: 2;
+        color: #fff;
     }
 </style>
 <body>
@@ -48,59 +49,63 @@
     <div class="where">
     <img id="telephone" src="айфон.png" height="75" width="65"  alt="">
     </div>
-    <div id="click"></div>
+    <div id="click">Краще попади в мене)</div>
 </body>
 <script>
-    let click = document.querySelector('#click');
+    let clickSquare = document.querySelector('#click');
     let x;
     let y;
+    let info = document.querySelector('.ask')
     let no = new Audio();
     no.src = 'no.mp3';
 
-    click.addEventListener('click', () => {
+    clickSquare.addEventListener('click', () => {
         no.play();
         x = Math.floor(Math.random() * 100);
-        y = Math.floor(Math.random() * 90);
-        click.style.top = x + '%';
-        click.style.left = y + '%';
+        y = Math.floor(Math.random() * 80);
+        clickSquare.style.top = x + '%';
+        clickSquare.style.left = y + '%';
     })
-    const videoElement = document.createElement('video');
-        videoElement.setAttribute('src', 'lyashko.mp4');
-        videoElement.setAttribute('autoplay', '');
-        videoElement.setAttribute('muted', '');
-        videoElement.setAttribute('loop', '');
-
-        // Устанавливаем стили для элемента video
-        videoElement.style.position = 'absolute';
-        videoElement.style.top = '0';
-        videoElement.style.left = '0';
-        videoElement.style.width = '100%';
-        videoElement.style.height = '100%';
-        videoElement.style.objectFit = 'cover';
-        videoElement.style.zIndex = '-999';
+    
 let  opacity = 0;
     function fadeIn() {
     let cellphone = document.querySelector('#telephone');
     
     let intervalID = cellphone. addEventListener('mouseenter', function() {
     console.log(opacity)
-    opacity += 0.05;
+    opacity += 0.2;
     cellphone.style.opacity = opacity;
-    checkOpacity();
+    if( opacity >= 0.5) {
+        info.innerHTML = 'Я вже бачу телефон';
+    }
+    if( opacity >= 0.9) {
+    checkOpacity();}
 }, 300);
 }
 fadeIn();
 
 function checkOpacity() {
-    if (opacity >= 1) {
-        videoElement.style.zIndex = '999';
-        document.body.appendChild(videoElement);
-        videoElement.play();
-        setTimeout(function() {
-            window.location.href = 'levelthree.html'
-        }, 5600);
-    }
+
+        
+        const lyashko = document.createElement('video');
+        lyashko.setAttribute('src', 'lyashko.mp4');
+        lyashko.setAttribute('autoplay', '');
+        lyashko.setAttribute('muted', '');
+        lyashko.setAttribute('loop', '');
+        
+        document.body.appendChild(lyashko);
+        lyashko.style.position = 'absolute';
+        lyashko.style.top = '0';
+        lyashko.style.left = '0';
+        lyashko.style.width = '100%';
+        lyashko.style.height = '100%';
+        lyashko.style.objectFit = 'cover';
+        lyashko.style.zIndex = '9999';
+        console.log(lyashko)
+setTimeout(function() {
+    window.location.href = 'levelthree.html'
+}, 5700);
+    
 }
 </script>
 </html>
-``
