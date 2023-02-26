@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>four</title>
+</head>
+<style>
+     body{
+        margin: 0;
+        width: 95%;
+        height: 95%;
+        z-index: 2;
+    }
+    .bottom{
+        position: absolute;
+        bottom: 0;
+        height: 20%;
+        width: 100vw;
+        z-index: 3;
+    }
+    .b-g {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: rgb(32, 109, 197);
+        z-index: 2;
+    }
+    .sausage{
+        position: absolute;
+        height: 50px;
+        z-index: 4;
+        bottom: 100px;
+        right: 120px;
+        transform: rotate(90deg);
+    }
+    .bun{
+        position: absolute;
+        height: 100px;
+        z-index: 5;
+        bottom: 30px;
+        right: 30px;
+        transform: rotate(103deg);
+    }
+</style>
+<body>
+    <img class="bottom" src="kithen-table.png" alt="">
+    <div class="b-g"></div>
+    <img src="сосиска.png" class="sausage" alt="">
+    <img src="bulochka.png" class="bun"  alt="">
+</body>
+<script>
+let sausage = document.querySelector('.sausage');
+let bun = document.querySelector('.bun');
+
+</script>
+</html>

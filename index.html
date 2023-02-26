@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -98,34 +97,35 @@
     let squareOne = document.querySelector('#squaretwo');
     let squaretwo = document.querySelector('#square');
     let squarethree = document.querySelector('#squarethree');
-    let score = 0;
+    let yu = 0;
+    let l = 0;
+    let ia = 0;
 
 
 iOne.addEventListener('click', function(event) {
     squaretwo.appendChild(event.target);
     iOne.style.width = 60 + 'px';
     iOne.style.height = 60 + 'px';
-    score += 1 ;
-    checkScore(score);
+    yu = 1 ;
+    checkScore();
 });
 iTwo.addEventListener('click', function(event) {
         squareOne.appendChild(event.target);
         iTwo.style.width = 60 + 'px';
         iTwo.style.height = 60 + 'px';
-        score += 1 ;
-        checkScore(score);
+        l = 1 ;
+        checkScore();
 });
 iThree.addEventListener('click', function(event) {
     squarethree.appendChild(event.target);
         iThree.style.width = 60 + 'px';
         iThree.style.height = 60 + 'px';
-        score += 1 ;
-        checkScore(score);
+        ia = 1 ;
+        checkScore();
 });
 
-function checkScore(score) {
-    console.log(score)
-if (score === 3) {
+function checkScore() {
+if (yu === 1 && l === 1 && ia === 1) {
     const videoElement = document.createElement('video');
                 videoElement.setAttribute('src', 'videoplayback.mp4');
                 videoElement.setAttribute('autoplay', '');
