@@ -1,6 +1,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=710, initial-scale=1">
     <title>play</title>
 
     </head>
@@ -17,6 +18,7 @@
     width: 100px;
     height: 100px;
     bottom: 100px;
+    z-index: 2;
 }
 #img1 {
     position: absolute;
@@ -38,6 +40,7 @@
     width: 370px;
     height: 350px;
 }
+
 #window{
     position: absolute;
     width: 300px;
@@ -46,6 +49,14 @@
     top: 50px;
     background-image: linear-gradient(to bottom, rgba(136, 4, 4, 0.9), rgba(208, 253, 7, 0.4)); /* градиент и изображение шторы в качестве фона */
     background-repeat: repeat; 
+}
+
+._touch #window{
+    left: 210px;
+    top: 180px;
+    width: 290px;
+    height: 750px;
+    background-image: none;
 }
     </style>
 
@@ -59,12 +70,14 @@
     
 
     <script>
-    var img2 = document.getElementById("img2");
-    var img3 = document.getElementById("img3");
+    let checkDevice = navigator.userAgent;
+    let img2 = document.getElementById("img2");
+    let img3 = document.getElementById("img3");
     let knife = document.querySelector('#knife');
     let step;
     let windows = document.querySelector('#window');
     let door = document.querySelector('.door');
+    let countStep = 0
     let povar = new Audio();
     let openDoor = new Audio();
     let sunduk = new Audio();
@@ -73,6 +86,10 @@
     sunduk.src = 'otkryit.mp3';
     openDoor.src = 'dveri.mp3';
     windowOpen.src = 'shtory.mp3'
+
+    if (navigator.userAgent.match('iPhone') || navigator.userAgent.match('Android') || 
+    navigator.userAgent.match('iPad') || navigator.userAgent.match('RIM')) {
+    document.body.classList.add('_touch');}
 
     windows.addEventListener('click', () => {
         windowOpen.play();
@@ -92,6 +109,7 @@
     let knife = new Image();
     knife.src = 'knife.png';
     knife.id = 'knife';
+    knife.className = 'knife';
     document.getElementById('image-container').appendChild(knife);
     step = 3;
     setTimeout(function () {
@@ -103,22 +121,25 @@
     img2.addEventListener('mouseenter', function () {
     if (step === 3) {
         img2.src = 'bandit.png';
+        document.getElementById('image-container').style.display = 'none';
         sunduk.play();}})
 
     img2.addEventListener('click', () => {
     document.addEventListener("mousemove", function (event) {
-    var x = event.clientX;
-    var y = event.clientY;
+    let x = event.clientX;
+    let y = event.clientY;
     img2.style.left = x - 50 + "px";
     img2.style.top = y - 50 + "px";
-    
-        //document.querySelector('#image-container').remove();
-
+    checkFinishGame(x,y);
+    })})
+function checkFinishGame(x,y) {
         if (x + 100 > 280 &&
             x < 280 + 375 &&
             y + 100 > 80 &&
-            y + 100 < 430 
+            y + 100 < 430 && 
+            step === 3 
             ){
+                step = 0;
                 const videoElement = document.createElement('video');
                 videoElement.setAttribute('src', 'Triggered.mp4');
                 videoElement.setAttribute('autoplay', '');
@@ -134,16 +155,48 @@
                 videoElement.style.objectFit = 'cover';
                 videoElement.style.zIndex = '9999';
 
-                // Добавляем элемент video на страницу
                 document.body.appendChild(videoElement);
                 setTimeout(function() {
                     window.location.href = 'levelthree.html'
                 }, 4200);
             }
         
-    });})
+    }
 
 
+
+var cursorX;
+var cursorY;
+
+// встановити обробник подій для натискання на зображенні
+img2.addEventListener('touchstart', function(event) {
+  // зберігає координати курсора під час натискання
+  cursorX = event.touches[0].clientX;
+  cursorY = event.touches[0].clientY;
+});
+
+// встановити обробник подій для перетягування зображення
+img2.addEventListener('touchmove', function(event) {
+  // заборонити прокрутку екрана
+  event.preventDefault();
+  
+  // визначити різницю в координатах курсора
+  let diffX = event.touches[0].clientX - cursorX;
+  let diffY = event.touches[0].clientY - cursorY;
+  
+  // змінити позицію зображення
+  img2.style.left = (img2.offsetLeft + diffX) + 'px';
+  img2.style.top = (img2.offsetTop + diffY) + 'px';
+  
+  // оновити координати курсора
+  cursorX = event.touches[0].clientX;
+  cursorY = event.touches[0].clientY;
+  if (step === 3) {
+        img2.src = 'bandit.png';
+        document.querySelector('#image-container').style.display = 'none';
+        sunduk.play();}
+  checkFinishGame(cursorX,cursorY);
+})
     </script>
   </body>
 </html>
