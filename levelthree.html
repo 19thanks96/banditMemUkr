@@ -2,15 +2,15 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content=" initial-scale=1.0">
     <title>3</title>
 </head>
 <style>
     body{
         margin: 0;
         background: #000;
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
         z-index: 3;
     }
     img{
@@ -18,8 +18,12 @@
     }
     .where{
         position: absolute;
-        left: 320px;
-        bottom: 20px;
+        left: 250px;
+        bottom: 120px;
+        width: 150px;
+        height: 150px;
+    }
+    ._touch #telephone{
         width: 150px;
         height: 150px;
     }
@@ -27,7 +31,7 @@
         position: absolute;
         color: #fff;
         top: 10%; 
-        left: 50%; 
+        left: 50vw; 
         transform: translate(-50%, -50%); 
     }
     #click{
@@ -51,12 +55,16 @@
     <div id="click">Краще попади в мене)</div>
 </body>
 <script>
+    let checkDevice = navigator.userAgent;
     let clickSquare = document.querySelector('#click');
     let x;
     let y;
     let info = document.querySelector('.ask')
     let no = new Audio();
     no.src = 'no.mp3';
+    let cellphone = document.querySelector('#telephone');
+
+    
 
     clickSquare.addEventListener('click', () => {
         no.play();
@@ -68,7 +76,7 @@
     
 let  opacity = 0;
     function fadeIn() {
-    let cellphone = document.querySelector('#telephone');
+    console.log(cellphone)
     
     let intervalID = cellphone. addEventListener('mouseenter', function() {
     console.log(opacity)
@@ -85,6 +93,13 @@ let  opacity = 0;
 }, 300);
 }
 fadeIn();
+
+document.addEventListener('touchmove', preventDefault, { passive: false });
+document.addEventListener('mousemove', preventDefault, { passive: false });
+
+function preventDefault(e) {
+  e.preventDefault();
+}
 
 function checkOpacity() {
 
@@ -109,5 +124,22 @@ setTimeout(function() {
 }, 5700);
     
 }
+if (navigator.userAgent.match('iPhone') || navigator.userAgent.match('Android') || 
+    navigator.userAgent.match('iPad') || navigator.userAgent.match('RIM')) {
+    document.body.classList.add('_touch');
+    
+    cellphone.addEventListener('click', function (e) {
+    console.log(opacity);
+    opacity += 0.2;
+    cellphone.style.opacity = opacity;
+    if( opacity >= 0.5) {
+        info.innerHTML = 'Я вже бачу телефон';
+    }
+    if (opacity >= 0.8) {
+        info.innerHTML = 'Відтирай темряву з пристрою';
+    }
+    if( opacity >= 0.9) {
+    checkOpacity();
+    }})}
 </script>
 </html>
